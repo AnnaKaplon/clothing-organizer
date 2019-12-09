@@ -1,0 +1,26 @@
+version: '3'
+services:
+  organizer:
+    build: .
+    ports:
+      - 5000:5000
+    depends_on:
+      - db
+    environment:
+      - DATABASE_URL=postgresql://organizer_user:organizer@db:5432/clothing_organizer
+    command: python run.py run
+    volumes:
+      - .:/clothing-organizer/
+
+  db:
+    image: postgres:12.0
+    volumes:
+      - db_data:/var/lib/postgresql/data/
+    environment:
+      - POSTGRES_USER=organizer_user
+      - POSTGRES_PASSWORD=organizer
+      - POSTGRES_DB=clothing_organizer
+
+
+volumes:
+  db_data:

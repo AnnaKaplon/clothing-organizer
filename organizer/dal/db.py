@@ -9,5 +9,5 @@ Base = declarative_base()
 
 engine = create_engine(os.environ["DATABASE_URL"])
 
-Session = sessionmaker(bind=engine)
-session = Session()
+session_factory = sessionmaker(bind=engine)
+session = scoped_session(session_factory)

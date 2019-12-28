@@ -1,8 +1,7 @@
 import click
 
 from organizer.app import make_app
-from organizer.dal.db import session
-from organizer.dal.model.user import User
+from organizer.bl.user import create_user
 
 
 @click.group()
@@ -19,12 +18,9 @@ def run():
 @cli.command()
 @click.option('-e', '--email', required=True)
 @click.option('-p', '--password', required=True)
-def create_user(email, password):
-    new_user = User(email=email, password=password)
+def add_user(email, password):
+    create_user(email, password)
 
-    session.add(new_user)
-    session.commit()
-    session.close()
 
 if __name__ == '__main__':
     cli()

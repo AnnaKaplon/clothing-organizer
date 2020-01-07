@@ -10,7 +10,7 @@ from organizer.bl.user import get_user_by_id
 from organizer.utils.request import get_request_data
 
 if TYPE_CHECKING:
-    from organizer.dal.model.user import User
+    from organizer.models.user import User
 
 
 login_api = Blueprint('login', __name__)

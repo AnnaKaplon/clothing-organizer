@@ -1,9 +1,7 @@
 from typing import Optional
 
-from sqlalchemy.orm.exc import NoResultFound
-
-from organizer.dal.db import session
-from organizer.dal.model.user import User
+from organizer.models import session
+from organizer.models.user import User
 from organizer.utils.crypt import password_crypter
 
 

@@ -25,7 +25,8 @@ def upgrade():
         sa.Column("clothing_type", sa.Enum, nullable=False),
         sa.Column("color", sa.Enum, nullable=False),
         sa.Column("buy_date", sa.Date),
-        sa.Column("picture_url", sa.String)
+        sa.Column("picture_url", sa.String),
+        sa.Column("worn_out", sa.Boolean, nullable=False)
     )
 
     op.create_table(

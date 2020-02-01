@@ -1,3 +1,4 @@
+from http import HTTPStatus
 import json
 from typing import Optional
 
@@ -30,11 +31,11 @@ def login():
 
     login_user(serializer.context["user"])
 
-    return Response(status=200)
+    return Response(status=HTTPStatus.OK)
 
 
 @login_api.route("/logout", methods=["GET"])
 @login_required
 def logout():
     logout_user()
-    return Response(status=200)
+    return Response(status=HTTPStatus.OK)

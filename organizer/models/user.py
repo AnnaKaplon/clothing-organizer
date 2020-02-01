@@ -3,8 +3,7 @@ from typing import Optional
 from flask_login import UserMixin
 from sqlalchemy import Column, Integer, String, Boolean
 
-from organizer.models import session
-from organizer.models import Base
+from organizer.models import Base, session
 from organizer.utils.crypt import password_crypter
 
 

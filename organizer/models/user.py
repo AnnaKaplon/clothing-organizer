@@ -1,9 +1,7 @@
-
 from flask_login import UserMixin
 from sqlalchemy import Column, Integer, String, Boolean
 
 from organizer.models import Base
-
 
 
 class User(Base, UserMixin):

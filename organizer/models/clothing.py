@@ -1,6 +1,7 @@
 from enum import Enum
 
-from sqlalchemy import Column, Integer, String, Enum as SAEnum
+from sqlalchemy import Column, Date, Integer, String, ForeignKey, Enum as SAEnum
+from sqlalchemy.orm import relationship
 
 from organizer.models import Base
 
@@ -37,6 +38,23 @@ class Clothing(Base):
     __tablename__ = "clothing"
 
     id = Column(Integer, primary_key=True)
-    name = Column(String, required=True)
-    clothing_type = Column(SAEnum(ClothingType), required=True)
-    color = Column(SAEnum(Color), required=True)
+    user_id = Column(Integer, ForeignKey("user.id"))
+    name = Column(String, nullable=False)
+    clothing_type = Column(SAEnum(ClothingType), nullable=False)
+    color = Column(SAEnum(Color), nullable=False)
+    buy_date = Column(Date)
+    picture_url = Column(String)
+    wearings = relationship("Wearing")
+    washings = relationship("Washing")
+
+
+class Wearing(Base):
+    id = Column(Integer, primary_key=True)
+    date = Column(Date, nullable=False)
+    clothing_id = Column(Integer, ForeignKey("clothing.id"))
+
+
+class Washing(Base):
+    id = Column(Integer, primary_key=True)
+    date = Column(Date, nullable=False)
+    clothing_id = Column(Integer, ForeignKey("clothing.id"))
